@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-vpn" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+    <name>Vpn</name>
+    <description>深信服vpn插件</description>
+    <author>li</author>
+    <license>MIT License</license>
+
+
+    <js-module name="Vpn" src="www/vpnPlugin.js">
+        <clobbers target="vpnPlugin"/>
+    </js-module>
+
+
+    <platform name="android">
+
+        <!--<hook type="after_plugin_install" src="../../scripts/android/android-config-vpn.js" />-->
+
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="VpnPlugin">
+                <param name="android-package" value="plugin.vpn.VpnPlugin"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/VpnPlugin.java" target-dir="src/plugin/vpn"/>
+        <source-file src="src/android/libs/SangforSDK.jar" target-dir="libs"/>
+
+        <source-file src="src/android/libs/x86/libauth_forward.so" target-dir="libs/x86"/>
+        <source-file src="src/android/libs/x86/libhttps.so" target-dir="libs/x86"/>
+        <source-file src="src/android/libs/x86/libpkcs12cert.so" target-dir="libs/x86"/>
+        <source-file src="src/android/libs/x86/libsvpnservice.so" target-dir="libs/x86"/>
+
+        <source-file src="src/android/libs/armeabi/libauth_forward.so" target-dir="libs/armeabi"/>
+        <source-file src="src/android/libs/armeabi/libhttps.so" target-dir="libs/armeabi"/>
+        <source-file src="src/android/libs/armeabi/libpkcs12cert.so" target-dir="libs/armeabi"/>
+        <source-file src="src/android/libs/armeabi/libsvpnservice.so" target-dir="libs/armeabi"/>
+
+        <source-file src="src/android/libs/armeabi-v7a/libauth_forward.so" target-dir="libs/armeabi-v7a"/>
+        <source-file src="src/android/libs/armeabi-v7a/libhttps.so" target-dir="libs/armeabi-v7a"/>
+        <source-file src="src/android/libs/armeabi-v7a/libpkcs12cert.so" target-dir="libs/armeabi-v7a"/>
+        <source-file src="src/android/libs/armeabi-v7a/libsvpnservice.so" target-dir="libs/armeabi-v7a"/>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <!-- VpnService服务 -->
+            <service
+                    android:name="com.sangfor.ssl.l3vpn.service.EasyappSvpnService"
+                    android:permission="android.permission.BIND_VPN_SERVICE">
+                <intent-filter>
+                    <action android:name="com.sangfor.ssl.l3vpn.service.EasyappSvpnService"/>
+                </intent-filter>
+            </service>
+            <meta-data android:name="VPN_URL" android:value="someValue"/>
+            <meta-data android:name="VPN_PACKAGE_NAME" android:value="someValue"/>
+            
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+        </config-file>
+
+    </platform>
+
+
+</plugin>

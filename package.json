@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-vpn",
+  "version": "1.0.0",
+  "description": "深信服vpn插件",
+  "cordova": {
+    "id": "cordova-plugin-vpn",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huatech2016/cordova-plugin-vpn.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/huatech2016/cordova-plugin-vpn/issues"
+  },
+  "homepage": "https://github.com/huatech2016/cordova-plugin-vpn#readme"
+}
